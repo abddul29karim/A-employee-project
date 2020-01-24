@@ -57,8 +57,8 @@ public class E_DaoImp implements E_Dao {
     }
 
     @Override
-    public void delemp(Integer emp_id) {
-        Employee_Db employee_db = findById(emp_id);
+    public void delemp(String nik) {
+        Employee_Db employee_db = findByNik(nik);
         session().delete(employee_db);
     }
 

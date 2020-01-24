@@ -140,9 +140,9 @@ public class E_ServiceImp implements E_Service {
     }
 
     @Override
-    public ResponseEntity<DaoResponse> delemp(Integer emp_id) {
+    public ResponseEntity<DaoResponse> delemp(String nik) {
         DaoResponse response = new DaoResponse();
-        Employee_Db employee_db = e_dao.findById(emp_id);
+        Employee_Db employee_db = e_dao.findByNik(nik);
         if (employee_db == null) {
             response.setCode(404);
             response.setStatus("data kosong");
@@ -152,7 +152,7 @@ public class E_ServiceImp implements E_Service {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(response);
         } else {
-            e_dao.delemp(emp_id);
+            e_dao.delemp(nik);
             response.setCode(200);
             response.setStatus("data ditemukan");
             response.setMessagae("data berhasil");

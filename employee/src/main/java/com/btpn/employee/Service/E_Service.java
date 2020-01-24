@@ -21,7 +21,7 @@ public interface E_Service {
     public ResponseEntity<DaoResponse> update(Employee_Db employee_db, String nik);
 
     //delete
-    public ResponseEntity<DaoResponse> delemp(Integer emp_id);
+    public ResponseEntity<DaoResponse> delemp(String nik);
 
     //findbynik
     public ResponseEntity<DaoResponse> findByNik(String nik);

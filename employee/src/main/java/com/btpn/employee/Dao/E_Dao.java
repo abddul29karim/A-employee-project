@@ -20,7 +20,7 @@ public interface E_Dao {
     public Employee_Db update(Employee_Db employee_db, Integer emp_id);
 
     //delete
-    public void delemp(Integer emp_id);
+    public void delemp(String nik);
 
     //findbynik
     public Employee_Db findByNik(String nik);

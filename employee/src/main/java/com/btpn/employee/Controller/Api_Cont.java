@@ -51,9 +51,9 @@ public class Api_Cont {
      }
 
     //http://localhost:3002/employee/40
-    @DeleteMapping(value="/{emp_id}", headers ="Accept=application/json")
-    public ResponseEntity<DaoResponse> delemp(@PathVariable("emp_id") Integer emp_id) {
-        return e_service.delemp(emp_id);
+    @DeleteMapping(value="/{nik}", headers ="Accept=application/json")
+    public ResponseEntity<DaoResponse> delemp(@PathVariable("nik") String nik) {
+        return e_service.delemp(nik);
     }
 
     // http://localhost:3002/employee/40
