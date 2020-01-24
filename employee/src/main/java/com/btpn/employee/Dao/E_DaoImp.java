@@ -4,10 +4,14 @@ import com.btpn.employee.Entity.Employee_Db;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Repository;
 
+import org.hibernate.Query;
 import javax.transaction.Transactional;
 import java.util.List;
+
+import static java.lang.Math.round;
 
 @Repository
 @Transactional
@@ -24,9 +28,11 @@ public class E_DaoImp implements E_Dao {
     }
 
     @Override
-    public List<Employee_Db> getEmp() {
-        @SuppressWarnings("unchecked")
-        List<Employee_Db> list = session().createCriteria(Employee_Db.class).list();
+    public List<Employee_Db> getEmp(Integer page, Integer limit) {
+        //List<Employee_Db> list = session().createCriteria(Employee_Db.class).list();
+        Integer firstResult = round((page-1) * limit) +1;
+        List<Employee_Db> list = session().createQuery("FROM Employee_Db ").setMaxResults(limit).setFirstResult(firstResult).list();
+
         return list;
     }
 

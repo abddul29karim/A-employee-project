@@ -12,13 +12,13 @@ public interface E_Service {
     public ResponseEntity<DaoResponse> save(Employee_Db employee_db);
 
    //findall
-    public ResponseEntity<DaoResponse> getEmp();
+    public ResponseEntity<DaoResponse> getEmp(Integer page, Integer limit);
 
     //findbyid
     public ResponseEntity<DaoResponse> findById(Integer emp_id);
 
     //update
-    public ResponseEntity<DaoResponse> update(Employee_Db employee_db, Integer emp_id);
+    public ResponseEntity<DaoResponse> update(Employee_Db employee_db, String nik);
 
     //delete
     public ResponseEntity<DaoResponse> delemp(Integer emp_id);

@@ -67,8 +67,8 @@ public class E_ServiceImp implements E_Service {
 
 
     @Override
-    public ResponseEntity<DaoResponse> getEmp() {
-        List<Employee_Db> emp = e_dao.getEmp();
+    public ResponseEntity<DaoResponse> getEmp(Integer page, Integer limit) {
+        List<Employee_Db> emp = e_dao.getEmp(page,limit);
         DaoResponse response = new DaoResponse();
         if (emp == null) {
             response.setCode(400);
@@ -115,9 +115,9 @@ public class E_ServiceImp implements E_Service {
     }
 
     @Override
-    public ResponseEntity<DaoResponse> update(Employee_Db employee, Integer emp_id) {
+    public ResponseEntity<DaoResponse> update(Employee_Db employee, String nik) {
         DaoResponse response = new DaoResponse();
-        Employee_Db employee_db = e_dao.findById(emp_id);
+        Employee_Db employee_db = e_dao.findByNik(nik);
         if (employee_db == null) {
             response.setCode(400);
             response.setStatus("Bad request");
