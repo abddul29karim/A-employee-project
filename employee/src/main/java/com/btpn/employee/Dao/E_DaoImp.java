@@ -33,7 +33,7 @@ public class E_DaoImp implements E_Dao {
     public List<Employee_Db> getEmp(Integer page, Integer limit)
     {
         //List<Employee_Db> list = session().createCriteria(Employee_Db.class).list();
-        Integer firstResult = round((page - 1) * limit) + 1;
+        Integer firstResult = round((page - 1) * limit) + 0;
         List<Employee_Db> list = session().createQuery("FROM Employee_Db ").setFirstResult(firstResult).setMaxResults(limit).getResultList();
 
         return list;

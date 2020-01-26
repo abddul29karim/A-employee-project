@@ -79,10 +79,12 @@ public class E_ServiceImp implements E_Service {
         } else {
             int count = e_dao.findall().size();
             int jumlahPage = ((count/limit)+1);
+            int countt = e_dao.findall().size();
             response.setData(emp);
             response.setCode(200);
             response.setStatus("berhasil");
             response.setMessagae("data karyawan");
+            response.setTotaldata(countt);
             response.setTotalpage(jumlahPage );
                         return ResponseEntity
                     .status(HttpStatus.OK)
@@ -100,8 +102,14 @@ public class E_ServiceImp implements E_Service {
     @Override
     public ResponseEntity<DaoResponse> update(Employee_Db employee, String nik) {
         DaoResponse response = new DaoResponse();
+        String emailreg = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String nikreg = "[0-9]{8}";
+        String namereg = "[a-zA-Z ]+$";
         Employee_Db employee_db = e_dao.findByNik(nik);
-        if (employee_db == null) {
+        if (employee_db == null||
+                !employee_db.getEmail().matches(emailreg) ||
+                !employee_db.getNik().matches(nikreg) ||
+                !employee_db.getName().matches(namereg)) {
             response.setCode(400);
             response.setStatus("Bad request");
             response.setMessagae("data tidak boleh kosong");
