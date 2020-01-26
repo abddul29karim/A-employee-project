@@ -10,7 +10,7 @@ import javax.xml.soap.Text;
 import java.io.Serializable;
 
 @Entity
-@Table(name ="employee")
+@Table(name = "employee")
 @EntityListeners(AuditingEntityListener.class)
 public class Employee_Db implements Serializable {
     int emp_id;
@@ -21,9 +21,9 @@ public class Employee_Db implements Serializable {
 
 
     @Id
-    @GenericGenerator(name ="gen", strategy ="increment")
-    @GeneratedValue(generator ="gen")
-    @Column(name ="emp_id")
+    @GenericGenerator(name = "gen", strategy = "increment")
+    @GeneratedValue(generator = "gen")
+    @Column(name = "emp_id")
     public int getEmp_id() {
         return emp_id;
     }
@@ -40,7 +40,7 @@ public class Employee_Db implements Serializable {
         this.nik = nik;
     }
 
-    @Column(name ="name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -49,7 +49,7 @@ public class Employee_Db implements Serializable {
         this.name = name;
     }
 
-    @Column(name ="email")
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -58,7 +58,7 @@ public class Employee_Db implements Serializable {
         this.email = email;
     }
 
-    @Column(name ="address")
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }

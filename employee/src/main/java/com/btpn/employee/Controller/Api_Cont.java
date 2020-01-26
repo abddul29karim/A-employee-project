@@ -27,15 +27,15 @@ public class Api_Cont {
     E_Dao e_dao;
 
     //http://localhost:3002/employee/register
-  @RequestMapping(value="/register", method=RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<DaoResponse> createemp(@RequestBody Employee_Db employee_db) {
-     return e_service.save(employee_db);
-  }
+        return e_service.save(employee_db);
+    }
 
     //http://localhost:3002/employee/all
-    @GetMapping(value="/", headers="Accept=application/json")
-    public ResponseEntity<DaoResponse> getEmp(@RequestParam(name="page",defaultValue ="1") Integer page,@RequestParam(name="limit", defaultValue="10") Integer limit) {
-       return e_service.getEmp(page,limit);
+    @GetMapping(value = "/", headers = "Accept=application/json")
+    public ResponseEntity<DaoResponse> getEmp(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "limit", defaultValue = "10") Integer limit) {
+        return e_service.getEmp(page, limit);
     }
 /*
     // http://localhost:3002/employee/40
@@ -44,33 +44,33 @@ public class Api_Cont {
           return e_service.findById(emp_id);
     }*/
 
-     //http://localhost:3002/employee/40
-     @PutMapping(value="/{nik}", headers="Accept=application/json")
-     public ResponseEntity<DaoResponse> update(@RequestBody Employee_Db emp ,@PathVariable("nik") String nik) {
-       return e_service.update(emp, nik);
-     }
+    //http://localhost:3002/employee/40
+    @PutMapping(value = "/{nik}", headers = "Accept=application/json")
+    public ResponseEntity<DaoResponse> update(@RequestBody Employee_Db emp, @PathVariable("nik") String nik) {
+        return e_service.update(emp, nik);
+    }
 
     //http://localhost:3002/employee/40
-    @DeleteMapping(value="/{nik}", headers ="Accept=application/json")
+    @DeleteMapping(value = "/{nik}", headers = "Accept=application/json")
     public ResponseEntity<DaoResponse> delemp(@PathVariable("nik") String nik) {
         return e_service.delemp(nik);
     }
 
     // http://localhost:3002/employee/40
     @GetMapping(value = "/{nik}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DaoResponse> findByNik(@PathVariable("nik") String  nik) {
+    public ResponseEntity<DaoResponse> findByNik(@PathVariable("nik") String nik) {
         return e_service.findByNik(nik);
     }
 
     // http://localhost:3002/employee/40
     @GetMapping(value = "email/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DaoResponse> findByEmail(@PathVariable("email") String  email) {
+    public ResponseEntity<DaoResponse> findByEmail(@PathVariable("email") String email) {
         return e_service.findByEmail(email);
     }
 
     // http://localhost:3002/employee/40
     @GetMapping(value = "name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DaoResponse> findByName(@PathVariable("name") String  name) {
+    public ResponseEntity<DaoResponse> findByName(@PathVariable("name") String name) {
         return e_service.findByName(name);
     }
 

@@ -2,7 +2,6 @@ package com.btpn.employee.Service;
 
 import com.btpn.employee.Dao.DaoResponse;
 import com.btpn.employee.Dao.E_Dao;
-import com.btpn.employee.Dao.E_DaoImp;
 import com.btpn.employee.Entity.Employee_Db;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,13 +31,13 @@ public class E_ServiceImp implements E_Service {
                 !employee_db.getNik().matches(nik) ||
                 !employee_db.getName().matches(name)) {
 
-                response.setCode(400);
-                response.setStatus("Bad request");
-                response.setMessagae("data tidak boleh kosong / format email");
-                return ResponseEntity
-                        .status(HttpStatus.BAD_REQUEST)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(response);
+            response.setCode(400);
+            response.setStatus("Bad request");
+            response.setMessagae("data tidak boleh kosong / format email");
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response);
 
         }
         Employee_Db empemail = e_dao.findByEmail(employee_db.getEmail());
@@ -65,25 +64,27 @@ public class E_ServiceImp implements E_Service {
                 .body(response);
     }
 
-
     @Override
-    public ResponseEntity<DaoResponse> getEmp(Integer page, Integer limit) {
-        List<Employee_Db> emp = e_dao.getEmp(page,limit);
+    public ResponseEntity<DaoResponse > getEmp(Integer page, Integer limit) {
+        List<Employee_Db> emp = e_dao.getEmp(page, limit);
         DaoResponse response = new DaoResponse();
         if (emp == null) {
             response.setCode(400);
             response.setStatus("Bad request");
-            response.setMessagae("data tidak boleh kosong / format email");
+            response.setMessagae("test");
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(response);
         } else {
+            int count = e_dao.findall().size();
+            int jumlahPage = ((count/limit)+1);
             response.setData(emp);
             response.setCode(200);
-            response.setStatus("data karyawan");
-            response.setMessagae("data");
-            return ResponseEntity
+            response.setStatus("berhasil");
+            response.setMessagae("data karyawan");
+            response.setTotalpage(jumlahPage );
+                        return ResponseEntity
                     .status(HttpStatus.OK)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(response);
@@ -91,27 +92,9 @@ public class E_ServiceImp implements E_Service {
     }
 
     @Override
-    public ResponseEntity<DaoResponse> findById(Integer emp_id) {
-        DaoResponse response = new DaoResponse();
-        Employee_Db employee_db = e_dao.findById(emp_id);
-        if (employee_db == null) {
-            response.setCode(400);
-            response.setStatus("Bad request");
-            response.setMessagae("data tidak boleh kosong");
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(response);
-        } else {
-            response.setData(employee_db);
-            response.setCode(200);
-            response.setStatus("data ditemukan");
-            response.setMessagae("data ada");
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(response);
-        }
+    public int findall() {
+       int count = e_dao.findall().size();
+       return count;
     }
 
     @Override
@@ -127,7 +110,7 @@ public class E_ServiceImp implements E_Service {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(response);
         } else {
-            Employee_Db data = e_dao.update(employee, employee_db.getEmp_id());
+            Employee_Db data = e_dao.update(employee, employee_db.getNik());
             response.setData(data);
             response.setCode(200);
             response.setStatus("data ditemukan");
@@ -146,7 +129,7 @@ public class E_ServiceImp implements E_Service {
         if (employee_db == null) {
             response.setCode(404);
             response.setStatus("data kosong");
-            response.setMessagae("data tidak ditemukan");
+            response.setMessagae("masukan nik kembali");
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .contentType(MediaType.APPLICATION_JSON)

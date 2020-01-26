@@ -2,9 +2,18 @@ package com.btpn.employee.Dao;
 
 public class DaoResponse<T extends Object> {
     private int code;
+    private int totalpage;
     private String status;
     private String messagae;
     private T data;
+
+    public int getTotalpage() {
+        return totalpage;
+    }
+
+    public void setTotalpage(int totalpage) {
+        this.totalpage = totalpage;
+    }
 
     public int getCode() {
         return code;

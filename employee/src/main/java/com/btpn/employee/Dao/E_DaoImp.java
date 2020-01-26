@@ -8,6 +8,7 @@ import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Repository;
 
 import org.hibernate.Query;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -18,7 +19,8 @@ import static java.lang.Math.round;
 public class E_DaoImp implements E_Dao {
     @Autowired
     private SessionFactory sessionFactory;
-    private Session session(){
+
+    private Session session() {
         return this.sessionFactory.getCurrentSession();
     }
 
@@ -28,26 +30,29 @@ public class E_DaoImp implements E_Dao {
     }
 
     @Override
-    public List<Employee_Db> getEmp(Integer page, Integer limit) {
+    public List<Employee_Db> getEmp(Integer page, Integer limit)
+    {
         //List<Employee_Db> list = session().createCriteria(Employee_Db.class).list();
-        Integer firstResult = round((page-1) * limit) +1;
-        List<Employee_Db> list = session().createQuery("FROM Employee_Db ").setMaxResults(limit).setFirstResult(firstResult).list();
+        Integer firstResult = round((page - 1) * limit) + 1;
+        List<Employee_Db> list = session().createQuery("FROM Employee_Db ").setFirstResult(firstResult).setMaxResults(limit).getResultList();
 
         return list;
     }
 
+
+
     //https://www.candidjava.com/tutorial/spring-boot-hibernate-crud-example/
     @Override
-    public Employee_Db findById(Integer emp_id) {
-        return (Employee_Db) this.session().createQuery
-                ("from Employee_Db where emp_id= :id_emp").
-                setParameter("id_emp",emp_id).uniqueResult();
+    public List<Employee_Db> findall() {
+        List<Employee_Db> list = session().createQuery("FROM Employee_Db ").list();
+
+        return list;
     }
 
     @Override
-    public Employee_Db update(Employee_Db emp, Integer emp_id) {
+    public Employee_Db update(Employee_Db emp, String nik) {
         //Employee_Db employee_db = session().get(Employee_Db.class, emp_id);
-        Employee_Db employee_db = findById(emp_id);
+        Employee_Db employee_db = findByNik(nik);
         employee_db.setName(emp.getName());
         employee_db.setEmail(emp.getEmail());
         System.out.println(emp.getEmail());

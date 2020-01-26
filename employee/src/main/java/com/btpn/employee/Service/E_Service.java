@@ -11,11 +11,11 @@ public interface E_Service {
     //create
     public ResponseEntity<DaoResponse> save(Employee_Db employee_db);
 
-   //findall
+    //findall
     public ResponseEntity<DaoResponse> getEmp(Integer page, Integer limit);
 
     //findbyid
-    public ResponseEntity<DaoResponse> findById(Integer emp_id);
+    public int findall();
 
     //update
     public ResponseEntity<DaoResponse> update(Employee_Db employee_db, String nik);
@@ -31,5 +31,6 @@ public interface E_Service {
 
     //findbyname
     public ResponseEntity<DaoResponse> findByName(String name);
+
 
 }

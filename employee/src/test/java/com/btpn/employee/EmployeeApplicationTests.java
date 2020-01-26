@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 
 import org.junit.Before;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
@@ -27,95 +28,13 @@ import java.util.List;
 
 @SpringBootTest
 class EmployeeApplicationTests {
-   @Mock
-    E_Dao e_dao;
-
-   @Mock
+    @Autowired
     private Employee_Db employee_db;
-
-
-
-   /* @InjectMocks
-    E_Service e_service;
-
-    @InjectMocks
-    E_ServiceImp e_serviceImp;
-    @Mock
-    E_Dao e_dao;
-
-    Employee_Db dummy = new Employee_Db();*/
-  /* @Test
-    public  void createemp(){
-        dummy.setNik("1234");
-        dummy.setName("abdul karim");
-        dummy.setEmail("abdul@gmail.com");
-        dummy.setAddress("jakarta");
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<DaoResponse> test = e_service.save(dummy);
-        assertThat(test.getStatusCodeValue()).isEqualTo(200);
-    }
+    @MockBean
+    private E_Service e_service;
 
     @Test
-    public  void update(){
-        dummy.setNik("1234");
-        dummy.setName("abdul karim");
-        dummy.setEmail("abdul@gmail.com");
-        dummy.setAddress("jakarta");
-        when(e_service.findByNik(dummy.getNik())).thenReturn(dummy);
+    public void getEmp() throws Exception{
 
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<DaoResponse> test = api_cont.update(dummy, dummy.getEmp_id());
-        assertThat(test.getStatusCodeValue()).isEqualTo(400);
     }
-
-    @Test
-    public void findById(){
-        dummy.setNik(1234);
-        dummy.setName("abdul karim");
-        dummy.setEmail("abdul@gmail.com");
-        dummy.setAddress("jakarta");
-        when(e_service.findById(dummy.getEmp_id())).thenReturn(dummy);
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<DaoResponse> test =api_cont.findById(dummy.getEmp_id());
-        assertThat(test.getStatusCodeValue()).isEqualTo(200);
-    }
-
-    @Test
-    public void getEmp(){
-        dummy.setNik(1234);
-        dummy.setName("abdul karim");
-        dummy.setEmail("abdul@gmail.com");
-        dummy.setAddress("jakarta");
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<DaoResponse> test =api_cont.getEmp();
-        assertThat(test.getStatusCodeValue()).isEqualTo(200);
-    }
-
-    //ResponseEntity<DaoResponse> delemp(Integer emp_id)
-    @Test
-    public void delemp(){
-        dummy.setNik("11111111");
-        dummy.setName("abdul karim");
-        dummy.setEmail("abdul@gmail.com");
-        dummy.setAddress("jakarta");
-        when(e_service.findById(1)).thenReturn(dummy);
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<DaoResponse> test =e_serviceImp.delemp();
-        assertThat(test.getStatusCodeValue()).isEqualTo(200);
-    }*/
-
 }

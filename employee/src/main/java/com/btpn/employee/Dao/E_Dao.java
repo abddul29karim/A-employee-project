@@ -1,6 +1,8 @@
 package com.btpn.employee.Dao;
 
 import com.btpn.employee.Entity.Employee_Db;
+import org.hibernate.Session;
+import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.ResponseEntity;
 
@@ -13,11 +15,12 @@ public interface E_Dao {
     //findall
     public List<Employee_Db> getEmp(Integer page, Integer limit);
 
+
     //findbyid
-    public Employee_Db findById(Integer emp_id);
+    public List <Employee_Db> findall();
 
     //update
-    public Employee_Db update(Employee_Db employee_db, Integer emp_id);
+    public Employee_Db update(Employee_Db employee_db, String emp_id);
 
     //delete
     public void delemp(String nik);

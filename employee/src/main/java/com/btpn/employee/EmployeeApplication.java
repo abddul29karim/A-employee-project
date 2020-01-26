@@ -22,7 +22,7 @@ import java.util.Properties;
         DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
         HibernateJpaAutoConfiguration.class
-},scanBasePackages = {"com"})
+}, scanBasePackages = {"com"})
 public class EmployeeApplication {
     @Autowired
     private Environment env;
@@ -30,8 +30,9 @@ public class EmployeeApplication {
     public static void main(String[] args) {
         SpringApplication.run(EmployeeApplication.class, args);
     }
+
     @Bean(name = "datasource")
-    public DataSource getDataSource(){
+    public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
@@ -45,14 +46,14 @@ public class EmployeeApplication {
     @Bean(name = "sessionFactory")
     public SessionFactory getSessionFactory(DataSource dataSource) throws IOException {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect",env.getProperty("spring.jpa.properties.hibernate.dialect"));
-        properties.put("hibernate.show_sql",env.getProperty("spring.jpa.show-sql"));
+        properties.put("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
+        properties.put("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
         properties.put("current_session_context_class", env.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
         properties.put("hibernate.id.new_generator_mapping", env.getProperty("spring.jpa.properties.hibernate.id.new_generator_mappings"));
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
 
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-        factoryBean.setPackagesToScan(new String[] {""});
+        factoryBean.setPackagesToScan(new String[]{""});
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(properties);
         factoryBean.afterPropertiesSet();
@@ -63,7 +64,7 @@ public class EmployeeApplication {
 
     @Autowired
     @Bean(name = "transactionManager")
-    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory){
+    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
         return transactionManager;
     }
