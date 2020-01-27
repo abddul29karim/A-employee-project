@@ -32,6 +32,7 @@ public class Employee_Db implements Serializable {
         this.emp_id = emp_id;
     }
 
+    @Column(name = "nik")
     public String getNik() {
         return nik;
     }

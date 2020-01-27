@@ -55,7 +55,6 @@ public class E_DaoImp implements E_Dao {
         Employee_Db employee_db = findByNik(nik);
         employee_db.setName(emp.getName());
         employee_db.setEmail(emp.getEmail());
-        System.out.println(emp.getEmail());
         employee_db.setAddress(emp.getAddress());
         session().save(employee_db);
         return employee_db;
