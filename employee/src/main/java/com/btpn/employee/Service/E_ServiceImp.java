@@ -69,11 +69,11 @@ public class E_ServiceImp implements E_Service {
         List<Employee_Db> emp = e_dao.getEmp(page, limit);
         DaoResponse response = new DaoResponse();
         if (emp == null) {
-            response.setCode(400);
+            response.setCode(404);
             response.setStatus("Bad request");
             response.setMessagae("test");
             return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.NOT_FOUND)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(response);
         } else {
@@ -159,11 +159,11 @@ public class E_ServiceImp implements E_Service {
         DaoResponse response = new DaoResponse();
         Employee_Db employee_db = e_dao.findByNik(nik);
         if (employee_db == null) {
-            response.setCode(400);
+            response.setCode(404);
             response.setStatus("Bad request");
             response.setMessagae("data tidak boleh kosong");
             return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
+                    .status(HttpStatus.NOT_FOUND)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(response);
         } else {
