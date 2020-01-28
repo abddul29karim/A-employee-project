@@ -46,20 +46,7 @@ public class employeeTest {
         when(e_service.save(dummy)).thenReturn(ResponseEntity.status(201).body(responsedao));
         assertThat(api_cont.createemp(dummy).getStatusCodeValue()).isEqualTo(201);
     }
-//    @Test
-//    public void findallTest() {
-//        Employee_Db dummy = new Employee_Db();
-//        dummy.setNik("12345679");
-//        dummy.setName("dummyy");
-//        dummy.setEmail("dummy2@gmail.com");
-//        dummy.setAddress("jakarta utara");
-//        DaoResponse responsedao = new DaoResponse();
-//        responsedao.setCode(200);
-//        responsedao.setData(dummy);
-//        responsedao.setStatus("data ditemukan");
-//        when(e_service.getEmp(page,)).thenReturn(ResponseEntity.status(200).body(responsedao));
-//        assertThat(api_cont.findByName(dummy.getName()).getStatusCodeValue()).isEqualTo(200);
-//    }
+
     @Test
     public void findNikTest() {
         Employee_Db dummy = new Employee_Db();
@@ -84,18 +71,4 @@ public class employeeTest {
         assertThat(api_cont.findByName(dummy.getName()).getStatusCodeValue()).isEqualTo(200);
     }
 
-//    @Test
-//    public void updateTest() {
-//        Employee_Db dummy = new Employee_Db();
-//        dummy.setNik("12345678");
-//        dummy.setName("dummy");
-//        dummy.setEmail("dummy@gmail.com");
-//        dummy.setAddress("jakarta");
-//        DaoResponse responsedao = new DaoResponse();
-//        responsedao.setCode(200);
-//        responsedao.setData(dummy);
-//        responsedao.setStatus("data berhasil di ubah");
-//        when(e_service.update(dummy)).thenReturn(ResponseEntity.status(200).body(responsedao));
-//        assertThat(api_cont.update(dummy).getStatusCodeValue()).isEqualTo(200);
-//    }
 }

@@ -1,12 +1,9 @@
 package com.btpn.employee.Entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.swing.*;
-import javax.xml.soap.Text;
 import java.io.Serializable;
 
 @Entity
@@ -40,6 +37,7 @@ public class Employee_Db implements Serializable {
     public void setNik(String nik) {
         this.nik = nik;
     }
+
 
     @Column(name = "name")
     public String getName() {
